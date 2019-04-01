@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import RecipeCard from "./../RecipeCard/RecipeCard";
+import store from './../../store'
 import "./Home.css";
 
 class Home extends Component {
   constructor(props) {
     super(props);
+    const reduxState = store.getState()
     this.state = {
-      recipes: []
+      recipes: reduxState.theRecipes
     };
   }
 
@@ -16,11 +18,11 @@ class Home extends Component {
       return (
         <RecipeCard
           key={i}
-          name={recipe.name}
-          category={recipe.category}
-          authorFirst={recipe.authorFirst}
-          authorLast={recipe.authorLast}
-          ingredients={recipe.ingredients}
+          name={recipe.recipeName}
+          category={recipe.recipeCat}
+          authorFirst={recipe.firstName}
+          authorLast={recipe.lastName}
+          ingredients={recipe.listIng}
           instructions={recipe.instructions}
         />
       );
